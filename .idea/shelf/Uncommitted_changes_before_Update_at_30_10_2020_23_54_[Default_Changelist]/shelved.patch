@@ -1,0 +1,274 @@
+Index: src/ba/unsa/etf/rpr/Korpa.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ba.unsa.etf.rpr;\r\n\r\npublic class Korpa {\r\n    public Artikl[] getArtikli() {\r\n    }\r\n\r\n    public int dajUkupnuCijenuArtikala() {\r\n    }\r\n\r\n    public boolean dodajArtikl(Artikl a) {\r\n    }\r\n\r\n    public Artikl izbaciArtiklSaKodom(String kod) {\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/ba/unsa/etf/rpr/Korpa.java	(revision 45d3bdd9d6ab362507f93e75441ec97a07635c91)
++++ src/ba/unsa/etf/rpr/Korpa.java	(date 1604077019145)
+@@ -1,15 +1,45 @@
+ package ba.unsa.etf.rpr;
+ 
+ public class Korpa {
++    private Artikl[] Artikli = new Artikl[50];
++    private static int brojArtikala = 0;
++
+     public Artikl[] getArtikli() {
++        return Artikli;
+     }
+ 
+     public int dajUkupnuCijenuArtikala() {
++        int cijena = 0;
++        for (int i = 0; i < brojArtikala; i++) {
++            cijena = cijena + Artikli[i].getCijena();
++        }
++        return cijena;
+     }
+ 
+     public boolean dodajArtikl(Artikl a) {
++        if (brojArtikala > 49)
++            return false;
++
++        Artikli[brojArtikala] = a;
++        brojArtikala = brojArtikala + 1;
++        return true;
+     }
+ 
+     public Artikl izbaciArtiklSaKodom(String kod) {
+-    }
+-}
++//        if (Artikli == null)
++//            return null;
++
++        for (int i = 0; i < brojArtikala; i++) {
++            if (Artikli[i].getKod().equals(kod)) {
++                Artikl temp = new Artikl(Artikli[i].getNaziv(), Artikli[i].getCijena(), Artikli[i].getKod());
++                Artikli[i] = null;
++                for (int j = i; j < brojArtikala-1; j++) {
++                    Artikli[j] = Artikli[j + 1];
++                }
++                brojArtikala = brojArtikala - 1;
++                return temp;
++            }
++        }
++        return null;
++    }
++}
+\ No newline at end of file
+Index: src/ba/unsa/etf/rpr/Supermarket.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ba.unsa.etf.rpr;\r\n\r\npublic class Supermarket {\r\n    private Artikl[] Artikli = new Artikl[1000];\r\n    private static int brojArtikala = 0;\r\n\r\n    public boolean dodajArtikl(Artikl temp) {\r\n        if (brojArtikala > 999) {\r\n            return false;\r\n        }\r\n        Artikli[brojArtikala] = temp;\r\n        brojArtikala = brojArtikala + 1;\r\n        return true;\r\n    }\r\n    public Artikl[] getArtikli() {\r\n        return Artikli;\r\n    }\r\n    public Artikl izbaciArtiklSaKodom(String kod) {\r\n        if (Artikli == null)\r\n            return null;\r\n\r\n        for (int i = 0; i < brojArtikala; i++) {\r\n            if (Artikli[i].getKod().equals(kod)) {\r\n                for (int j = i; j < brojArtikala-1; j++)\r\n                    Artikli[j] = Artikli[j+1];\r\n                brojArtikala = brojArtikala - 1;\r\n                return Artikli[brojArtikala-1];\r\n            }\r\n        }\r\n        return null;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/ba/unsa/etf/rpr/Supermarket.java	(revision 45d3bdd9d6ab362507f93e75441ec97a07635c91)
++++ src/ba/unsa/etf/rpr/Supermarket.java	(date 1604076917148)
+@@ -2,7 +2,12 @@
+ 
+ public class Supermarket {
+     private Artikl[] Artikli = new Artikl[1000];
+-    private static int brojArtikala = 0;
++
++    public int getBrojArtikala() {
++        return brojArtikala;
++    }
++
++    private int brojArtikala = 0;
+ 
+     public boolean dodajArtikl(Artikl temp) {
+         if (brojArtikala > 999) {
+@@ -21,10 +26,12 @@
+ 
+         for (int i = 0; i < brojArtikala; i++) {
+             if (Artikli[i].getKod().equals(kod)) {
++                Artikl temp = new Artikl(Artikli[i].getNaziv(), Artikli[i].getCijena(), Artikli[i].getKod());
++                Artikli[i] = null;
+                 for (int j = i; j < brojArtikala-1; j++)
+                     Artikli[j] = Artikli[j+1];
+                 brojArtikala = brojArtikala - 1;
+-                return Artikli[brojArtikala-1];
++                return temp;
+             }
+         }
+         return null;
+Index: src/ba/unsa/etf/rpr/Artikl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ba.unsa.etf.rpr;\r\n\r\npublic class Artikl {\r\n    String Naziv, Kod;\r\n    int Cijena;\r\n\r\n    public String getNaziv() {\r\n        return Naziv;\r\n    }\r\n    public int getCijena() {\r\n        return Cijena;\r\n    }\r\n    public String getKod() {\r\n        return Kod;\r\n    }\r\n\r\n    public Artikl(String Naziv, int Cijena, String Kod) {\r\n        this.Naziv = Naziv;\r\n        this.Cijena = Cijena;\r\n        this.Kod = Kod;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/ba/unsa/etf/rpr/Artikl.java	(revision 45d3bdd9d6ab362507f93e75441ec97a07635c91)
++++ src/ba/unsa/etf/rpr/Artikl.java	(date 1604077067003)
+@@ -1,8 +1,8 @@
+ package ba.unsa.etf.rpr;
+ 
+ public class Artikl {
+-    String Naziv, Kod;
+-    int Cijena;
++    private String Naziv, Kod;
++    private int Cijena;
+ 
+     public String getNaziv() {
+         return Naziv;
+@@ -19,5 +19,4 @@
+         this.Cijena = Cijena;
+         this.Kod = Kod;
+     }
+-
+-}
++}
+\ No newline at end of file
+Index: src/ba/unsa/etf/rpr/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ba.unsa.etf.rpr;\r\n\r\nimport java.util.Scanner;\r\n\r\npublic class Main {\r\n\r\n    private static Korpa korpa = new Korpa();\r\n    private static Supermarket supermarket = new Supermarket();\r\n\r\n    private static void unosArtikalaUMarket(){\r\n        supermarket.dodajArtikl(new Artikl(\"Biciklo\", 1000, \"1\"));\r\n        supermarket.dodajArtikl(new Artikl(\"Biciklo\", 1000, \"2\"));\r\n        supermarket.dodajArtikl(new Artikl(\"Biciklo\", 1000, \"3\"));\r\n        supermarket.dodajArtikl(new Artikl(\"Biciklo\", 1000, \"4\"));\r\n        supermarket.dodajArtikl(new Artikl(\"Biciklo\", 1000, \"5\"));\r\n        supermarket.dodajArtikl(new Artikl(\"Biciklo\", 1000, \"6\"));\r\n        supermarket.dodajArtikl(new Artikl(\"Biciklo\", 1000, \"7\"));\r\n        supermarket.dodajArtikl(new Artikl(\"Biciklo\", 1000, \"8\"));\r\n        supermarket.dodajArtikl(new Artikl(\"Biciklo\", 1000, \"9\"));\r\n        supermarket.dodajArtikl(new Artikl(\"Biciklo\", 1000, \"10\"));\r\n        supermarket.dodajArtikl(new Artikl(\"Biciklo\", 1000, \"11\"));\r\n        supermarket.dodajArtikl(new Artikl(\"Biciklo\", 1000, \"12\"));\r\n        supermarket.dodajArtikl(new Artikl(\"Biciklo\", 1000, \"13\"));\r\n        supermarket.dodajArtikl(new Artikl(\"Biciklo\", 1000, \"14\"));\r\n        supermarket.dodajArtikl(new Artikl(\"Biciklo\", 1000, \"15\"));\r\n        supermarket.dodajArtikl(new Artikl(\"Biciklo\", 1000, \"16\"));\r\n        supermarket.dodajArtikl(new Artikl(\"Biciklo\", 1000, \"17\"));\r\n        supermarket.dodajArtikl(new Artikl(\"Biciklo\", 1000, \"18\"));\r\n        supermarket.dodajArtikl(new Artikl(\"Biciklo\", 1000, \"19\"));\r\n        supermarket.dodajArtikl(new Artikl(\"Biciklo\", 1000, \"20\"));\r\n    }\r\n\r\n    public static void ispisArtikala(Artikl[] artikli){\r\n        for (Artikl a : artikli) {\r\n            if(a != null) System.out.println(\"Naziv: \" + a.getNaziv() + \", Kod: \" + a.getKod() + \", Cijena: \" + a.getCijena() + \" KM\");\r\n        }\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n//      Kreirati program koji modelira supermarket. Kupac ima korpu koja moze sadrzavati maksimalno 50 artikala.\r\n//      Supermarket maksimalno sadrzi 1000 artikala. Artikl je odredjen svojim nazivom, cijenom i kodom.\r\n//      Radi jednostavnosti cemo pretpostaviti da su svi kodovi artikala razliciti. Program treba da radi sljedece:\r\n//      Kupac na pocetku dobija praznu korpu, te u nju moze ubacivati i iz nje izbacivati artikle. Ukoliko kupac zeli\r\n//      ubacivati u korpu potrebno je ispisati sve artikle sa kodovima, te se unosi adekvatan kod za ubacivanje u korpu. Analogno\r\n//      za izbacivanje iz korpe je potrebno ispisati sve produkte koji se trenutno nalaze u korpi sa kodovima. Pri ubacivanju\r\n//      u korpu, stanje u supermarketu se mijenja i artikl vise nije dostupan. Analogno pri izbacivanju iz korpe,\r\n//      artikl se vraca u supermarket. Cilj je implementirati program tako da se transakcije izmedju korpe i supermarketa\r\n//      rjesavaju preko koda. Kupcu je potrebno omoguciti opciju da se prekine program, odnosno da odustane od kupovine,\r\n//      ili da ide na checkout gdje se obracunava potpuni iznos. Placanje se vrsi unosom pri cemu se validira da li je\r\n//      unesena negativna, odnosno dovoljna suma novca.\r\n\r\n        unosArtikalaUMarket();\r\n        for(;;){\r\n            System.out.print(\"0 - odustani\\n1 - dodaj u korpu\\n2 - izbaci iz korpe\\n3 - checkout\\nUnesite opciju: \");\r\n            Scanner scanner = new Scanner(System.in);\r\n            int opcija = scanner.nextInt();\r\n\r\n            if(opcija == 0){\r\n                System.out.println(\"Odustali ste od kupovine.\");\r\n                return;\r\n            }\r\n            else if(opcija == 1){\r\n                System.out.println(\"Dodavanje artikla u korpu\\nArtikli u marketu su: \");\r\n                ispisArtikala(supermarket.getArtikli());\r\n                System.out.println(\"Unesite kod artikla (unesite malo slovo \\\"c\\\" za odustajanje): \");\r\n                String kod = scanner.nextLine();\r\n                if(!kod.equals(\"c\")){\r\n                    Artikl a = supermarket.izbaciArtiklSaKodom(kod);\r\n                    if(a != null){\r\n                        if(korpa.dodajArtikl(a)) System.out.println(\"Artikl dodan u korpu.\");\r\n                        else {\r\n                            supermarket.dodajArtikl(a);\r\n                            System.out.println(\"Korpa je puna, artikl nije dodan!\");\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n            else if(opcija == 2){\r\n                System.out.println(\"Izbacivanje artikla iz korpe\\nArtikli u korpi su: \");\r\n                ispisArtikala(korpa.getArtikli());\r\n                System.out.println(\"Unesite kod artikla (unesite malo slovo \\\"c\\\" za odustajanje): \");\r\n                String kod = scanner.nextLine();\r\n                if(!kod.equals(\"c\")){\r\n                    Artikl a = korpa.izbaciArtiklSaKodom(kod);\r\n                    if(a != null){\r\n                        supermarket.dodajArtikl(a);\r\n                    }\r\n                }\r\n            }\r\n            else if(opcija == 3){\r\n                int cijena = korpa.dajUkupnuCijenuArtikala(), iznos;\r\n                System.out.println(\"Ukupna cijena je \" + korpa.dajUkupnuCijenuArtikala() + \" KM.\");\r\n                do{\r\n                    System.out.print(\"Unesite ispravan iznos: \");\r\n                    iznos = scanner.nextInt();\r\n                }while(iznos < cijena);\r\n                if(iznos > cijena) System.out.println(\"Povratni iznos: \" + (iznos - cijena));\r\n                System.out.println(\"Placeno, kupovina finalizirana.\");\r\n                return;\r\n            }\r\n        }\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/ba/unsa/etf/rpr/Main.java	(revision 45d3bdd9d6ab362507f93e75441ec97a07635c91)
++++ src/ba/unsa/etf/rpr/Main.java	(date 1604076975898)
+@@ -62,8 +62,10 @@
+             else if(opcija == 1){
+                 System.out.println("Dodavanje artikla u korpu\nArtikli u marketu su: ");
+                 ispisArtikala(supermarket.getArtikli());
++//                System.out.println("Broj artikala: " + supermarket.getBrojArtikala());
+                 System.out.println("Unesite kod artikla (unesite malo slovo \"c\" za odustajanje): ");
+                 String kod = scanner.nextLine();
++                kod = scanner.nextLine();
+                 if(!kod.equals("c")){
+                     Artikl a = supermarket.izbaciArtiklSaKodom(kod);
+                     if(a != null){
+@@ -80,6 +82,7 @@
+                 ispisArtikala(korpa.getArtikli());
+                 System.out.println("Unesite kod artikla (unesite malo slovo \"c\" za odustajanje): ");
+                 String kod = scanner.nextLine();
++                kod = scanner.nextLine();
+                 if(!kod.equals("c")){
+                     Artikl a = korpa.izbaciArtiklSaKodom(kod);
+                     if(a != null){
+@@ -101,4 +104,4 @@
+         }
+ 
+     }
+-}
++}
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"57aa2489-3c73-44b8-b397-e3eb36d8d41e\" name=\"Default Changelist\" comment=\"Initial import\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/ba/unsa/etf/rpr/Artikl.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/ba/unsa/etf/rpr/Artikl.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/ba/unsa/etf/rpr/Korpa.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/ba/unsa/etf/rpr/Korpa.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/ba/unsa/etf/rpr/Supermarket.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/ba/unsa/etf/rpr/Supermarket.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"PREVIOUS_COMMIT_AUTHORS\">\r\n      <list>\r\n        <option value=\"vljubovic &lt;vljubovic@smartnet.ba&gt;\" />\r\n      </list>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1jbIuknWbLFJsDVfk25c7xdLSCl\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\r\n    <property name=\"project.structure.last.edited\" value=\"Project\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.0\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.0\" />\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration default=\"true\" type=\"ArquillianJUnit\" factoryName=\"\" nameIsGenerated=\"true\">\r\n      <option name=\"arquillianRunConfiguration\">\r\n        <value>\r\n          <option name=\"containerStateName\" value=\"\" />\r\n        </value>\r\n      </option>\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"57aa2489-3c73-44b8-b397-e3eb36d8d41e\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1604066588487</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1604066588487</updated>\r\n      <workItem from=\"1604066589551\" duration=\"6174000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Initial import\">\r\n      <created>1604073380800</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1604073380800</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Initial commit\" />\r\n    <MESSAGE value=\"Initial import\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Initial import\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"765\" y=\"226\" key=\"#com.intellij.ide.util.MemberChooser\" timestamp=\"1604067838468\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1050\" />\r\n    </state>\r\n    <state x=\"765\" y=\"226\" key=\"#com.intellij.ide.util.MemberChooser/-1920.325.1280.700/0.0.1920.1050@0.0.1920.1050\" timestamp=\"1604067838468\" />\r\n    <state x=\"440\" y=\"99\" key=\"SettingsEditor\" timestamp=\"1604066993744\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1050\" />\r\n    </state>\r\n    <state x=\"440\" y=\"99\" key=\"SettingsEditor/-1920.325.1280.700/0.0.1920.1050@0.0.1920.1050\" timestamp=\"1604066993744\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision 45d3bdd9d6ab362507f93e75441ec97a07635c91)
++++ .idea/workspace.xml	(date 1604085495260)
+@@ -19,10 +19,11 @@
+     <select />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="57aa2489-3c73-44b8-b397-e3eb36d8d41e" name="Default Changelist" comment="Initial import">
++    <list default="true" id="57aa2489-3c73-44b8-b397-e3eb36d8d41e" name="Default Changelist" comment="Uradjena klasa Supermarket">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/ba/unsa/etf/rpr/Artikl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ba/unsa/etf/rpr/Artikl.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/ba/unsa/etf/rpr/Korpa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ba/unsa/etf/rpr/Korpa.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/ba/unsa/etf/rpr/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ba/unsa/etf/rpr/Main.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/ba/unsa/etf/rpr/Supermarket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ba/unsa/etf/rpr/Supermarket.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -50,8 +51,22 @@
+     <property name="project.structure.last.edited" value="Project" />
+     <property name="project.structure.proportion" value="0.0" />
+     <property name="project.structure.side.proportion" value="0.0" />
++    <property name="restartRequiresConfirmation" value="false" />
+   </component>
+   <component name="RunManager">
++    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="ba.unsa.etf.rpr.Main" />
++      <module name="rpr2019-t1-z4" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="ba.unsa.etf.rpr.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
+     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+       <option name="arquillianRunConfiguration">
+         <value>
+@@ -63,6 +78,11 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
++    <recent_temporary>
++      <list>
++        <item itemvalue="Application.Main" />
++      </list>
++    </recent_temporary>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+@@ -72,7 +92,7 @@
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+       <updated>1604066588487</updated>
+-      <workItem from="1604066589551" duration="6174000" />
++      <workItem from="1604066589551" duration="10403000" />
+     </task>
+     <task id="LOCAL-00001" summary="Initial import">
+       <created>1604073380800</created>
+@@ -81,7 +101,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1604073380800</updated>
+     </task>
+-    <option name="localTasksCounter" value="2" />
++    <task id="LOCAL-00002" summary="Uradjena klasa Supermarket">
++      <created>1604074810207</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1604074810207</updated>
++    </task>
++    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -101,13 +128,30 @@
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="Initial commit" />
+     <MESSAGE value="Initial import" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Initial import" />
++    <MESSAGE value="Uradjena klasa Supermarket" />
++    <option name="LAST_COMMIT_MESSAGE" value="Uradjena klasa Supermarket" />
+   </component>
+   <component name="WindowStateProjectService">
+-    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1604067838468">
++    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1604076726618">
++      <screen x="0" y="0" width="1920" height="1050" />
++    </state>
++    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/-1920.325.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1604076726618" />
++    <state width="1877" height="285" key="GridCell.Tab.0.bottom" timestamp="1604077033266">
++      <screen x="0" y="0" width="1920" height="1050" />
++    </state>
++    <state width="1877" height="285" key="GridCell.Tab.0.bottom/-1920.325.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1604077033266" />
++    <state width="1877" height="285" key="GridCell.Tab.0.center" timestamp="1604077033265">
++      <screen x="0" y="0" width="1920" height="1050" />
++    </state>
++    <state width="1877" height="285" key="GridCell.Tab.0.center/-1920.325.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1604077033265" />
++    <state width="1877" height="285" key="GridCell.Tab.0.left" timestamp="1604077033265">
++      <screen x="0" y="0" width="1920" height="1050" />
++    </state>
++    <state width="1877" height="285" key="GridCell.Tab.0.left/-1920.325.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1604077033265" />
++    <state width="1877" height="285" key="GridCell.Tab.0.right" timestamp="1604077033265">
+       <screen x="0" y="0" width="1920" height="1050" />
+     </state>
+-    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/-1920.325.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1604067838468" />
++    <state width="1877" height="285" key="GridCell.Tab.0.right/-1920.325.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1604077033265" />
+     <state x="440" y="99" key="SettingsEditor" timestamp="1604066993744">
+       <screen x="0" y="0" width="1920" height="1050" />
+     </state>

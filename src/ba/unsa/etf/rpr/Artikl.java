@@ -1,8 +1,8 @@
 package ba.unsa.etf.rpr;
 
 public class Artikl {
-    String Naziv, Kod;
-    int Cijena;
+    private String Naziv, Kod;
+    private int Cijena;
 
     public String getNaziv() {
         return Naziv;
@@ -19,5 +19,4 @@ public class Artikl {
         this.Cijena = Cijena;
         this.Kod = Kod;
     }
-
 }
