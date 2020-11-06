@@ -8,6 +8,8 @@ public class Korpa {
         return Artikli;
     }
 
+    public int getBrojArtikala() { return brojArtikala; }
+
     public int dajUkupnuCijenuArtikala() {
         int cijena = 0;
         for (int i = 0; i < brojArtikala; i++) {
@@ -26,8 +28,8 @@ public class Korpa {
     }
 
     public Artikl izbaciArtiklSaKodom(String kod) {
-//        if (Artikli == null)
-//            return null;
+        if (this.getBrojArtikala() == 0)
+            return null;
 
         for (int i = 0; i < brojArtikala; i++) {
             if (Artikli[i].getKod().equals(kod)) {

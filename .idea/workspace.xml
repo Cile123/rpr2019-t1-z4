@@ -19,13 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57aa2489-3c73-44b8-b397-e3eb36d8d41e" name="Default Changelist" comment="Uradjena klasa Supermarket">
+    <list default="true" id="57aa2489-3c73-44b8-b397-e3eb36d8d41e" name="Default Changelist" comment="Merge remote-tracking branch 'origin/master'">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpr2019-t1-z4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/rpr2019-t1-z4.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ba/unsa/etf/rpr/Artikl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ba/unsa/etf/rpr/Artikl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/ba/unsa/etf/rpr/KorpaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test/ba/unsa/etf/rpr/KorpaTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rpr2019-t1-z4/ba/unsa/etf/rpr/Korpa.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/rpr2019-t1-z4/ba/unsa/etf/rpr/Korpa.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ba/unsa/etf/rpr/Korpa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ba/unsa/etf/rpr/Korpa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ba/unsa/etf/rpr/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ba/unsa/etf/rpr/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ba/unsa/etf/rpr/Supermarket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ba/unsa/etf/rpr/Supermarket.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +60,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/Test/ba/unsa/etf/rpr" />
     <property name="last_opened_file_path" value="$USER_HOME$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -126,7 +125,7 @@
       <updated>1604066588487</updated>
       <workItem from="1604066589551" duration="11046000" />
       <workItem from="1604309982844" duration="33000" />
-      <workItem from="1604659743660" duration="7106000" />
+      <workItem from="1604659743660" duration="8094000" />
     </task>
     <task id="LOCAL-00001" summary="Initial import">
       <created>1604073380800</created>
@@ -142,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604074810207</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Merge remote-tracking branch 'origin/master'">
+      <created>1604668528774</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1604668528774</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,7 +170,9 @@
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Initial import" />
     <MESSAGE value="Uradjena klasa Supermarket" />
-    <option name="LAST_COMMIT_MESSAGE" value="Uradjena klasa Supermarket" />
+    <MESSAGE value="Uradjen test za klasu Supermarket s kojom je provjerena i klasa Artikl" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/master'" />
   </component>
   <component name="WindowStateProjectService">
     <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1604076726618">
@@ -175,25 +183,25 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="740" y="280" key="FileChooserDialogImpl/-1920.325.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1604310010146" />
-    <state width="1877" height="166" key="GridCell.Tab.0.bottom" timestamp="1604668244958">
+    <state width="1877" height="166" key="GridCell.Tab.0.bottom" timestamp="1604669170516">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="166" key="GridCell.Tab.0.bottom/-1920.325.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1604668244958" />
+    <state width="1877" height="166" key="GridCell.Tab.0.bottom/-1920.325.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1604669170516" />
     <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1604664210254" />
-    <state width="1877" height="166" key="GridCell.Tab.0.center" timestamp="1604668244958">
+    <state width="1877" height="166" key="GridCell.Tab.0.center" timestamp="1604669170516">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="166" key="GridCell.Tab.0.center/-1920.325.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1604668244958" />
+    <state width="1877" height="166" key="GridCell.Tab.0.center/-1920.325.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1604669170516" />
     <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1604664210252" />
-    <state width="1877" height="166" key="GridCell.Tab.0.left" timestamp="1604668244958">
+    <state width="1877" height="166" key="GridCell.Tab.0.left" timestamp="1604669170516">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="166" key="GridCell.Tab.0.left/-1920.325.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1604668244958" />
+    <state width="1877" height="166" key="GridCell.Tab.0.left/-1920.325.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1604669170516" />
     <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1604664210252" />
-    <state width="1877" height="166" key="GridCell.Tab.0.right" timestamp="1604668244958">
+    <state width="1877" height="166" key="GridCell.Tab.0.right" timestamp="1604669170516">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="166" key="GridCell.Tab.0.right/-1920.325.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1604668244958" />
+    <state width="1877" height="166" key="GridCell.Tab.0.right/-1920.325.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1604669170516" />
     <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1604664210252" />
     <state x="440" y="99" key="SettingsEditor" timestamp="1604066993744">
       <screen x="0" y="0" width="1920" height="1050" />
@@ -203,13 +211,18 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="552" y="258" key="Vcs.Push.Dialog.v2/-1920.325.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1604098431529" />
+    <state x="1268" y="148" key="chooseDestDirectoryDialog" timestamp="1604668454391">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="1268" y="148" key="chooseDestDirectoryDialog/-1920.325.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1604668454391" />
     <state x="376" y="237" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1604663269618">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="376" y="237" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1280.689@0.0.1280.689" timestamp="1604663269618" />
-    <state x="412" y="116" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1604663209659">
-      <screen x="0" y="0" width="1280" height="689" />
+    <state x="1223" y="156" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1604668454408">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state x="1223" y="156" key="com.intellij.testIntegration.createTest.CreateTestDialog/-1920.325.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1604668454408" />
     <state x="412" y="116" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1280.689@0.0.1280.689" timestamp="1604663209659" />
     <state x="342" y="145" key="new project wizard" timestamp="1604309994375">
       <screen x="0" y="0" width="1920" height="1050" />
@@ -217,6 +230,6 @@
     <state x="342" y="145" key="new project wizard/-1920.325.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1604309994375" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/rpr2019_t1_z4$All_in_rpr2019_t1_z4.ic" NAME="All in rpr2019-t1-z4 Coverage Results" MODIFIED="1604666838734" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/rpr2019_t1_z4$All_in_rpr2019_t1_z4.ic" NAME="All in rpr2019-t1-z4 Coverage Results" MODIFIED="1604669004699" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
